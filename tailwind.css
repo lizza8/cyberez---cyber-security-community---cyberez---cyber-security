@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 2 3 8;
+    --foreground: 220 100% 95%;
+    --cyber-blue: 180 100% 50%;
+    --cyber-purple: 270 80% 65%;
+    --cyber-red: 0 85% 55%;
+    --cyber-green: 140 100% 50%;
+    --neural-glow: 180 100% 70%;
+    --cyber-orange: 30 100% 50%;
+    --cyber-pink: 320 100% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-[rgb(2,3,8)] text-foreground overflow-x-hidden;
+    font-family: 'Rajdhani', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: 0.02em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+
+  .text-glow-sm {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  }
+
+  .cyber-border {
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    box-shadow: 
+      0 0 15px rgba(0, 255, 255, 0.15),
+      inset 0 0 15px rgba(0, 255, 255, 0.05),
+      0 0 1px rgba(0, 255, 255, 0.8);
+    position: relative;
+  }
+
+  .cyber-border::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+      rgba(0, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(0, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .cyber-panel {
+    background: linear-gradient(135deg, 
+      rgba(0, 20, 40, 0.95) 0%,
+      rgba(0, 10, 20, 0.98) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .cyber-gradient {
+    background: linear-gradient(135deg,
+      rgba(0, 255, 255, 0.1) 0%,
+      rgba(0, 150, 255, 0.05) 50%,
+      rgba(150, 0, 255, 0.1) 100%);
+  }
+
+  .neural-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.2);
+  }
+
+  .threat-glow {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6), 0 0 40px rgba(255, 0, 0, 0.3);
+  }
+
+  .scanline {
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 0 100%;
+    }
+  }
+
+  .glitch {
+    animation: glitch 0.3s infinite;
+  }
+
+  @keyframes glitch {
+    0%, 100% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(2px, -2px);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      filter: brightness(1);
+    }
+    50% {
+      opacity: 0.7;
+      filter: brightness(1.5);
+    }
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .grid-cyber {
+    background-image: 
+      linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 60px 60px;
+    position: relative;
+  }
+
+  .grid-cyber::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, 
+      transparent 0%, 
+      rgba(0, 255, 255, 0.03) 50%,
+      transparent 100%);
+    animation: grid-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes grid-pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .hex-pattern {
+    background-image: 
+      repeating-linear-gradient(0deg, rgba(0, 255, 255, 0.03) 0px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(60deg, rgba(0, 255, 255, 0.03) 0px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(120deg, rgba(0, 255, 255, 0.03) 0px, transparent 1px, transparent 60px);
+  }
+
+  .data-stream {
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(0, 255, 255, 0.1) 50%,
+      transparent 100%);
+    background-size: 100% 200%;
+    animation: data-flow 3s linear infinite;
+  }
+
+  @keyframes data-flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 200%; }
+  }
+
+  .hologram {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hologram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+    animation: hologram-scan 2s linear infinite;
+  }
+
+  @keyframes hologram-scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+}
