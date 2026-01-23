@@ -11,34 +11,96 @@ export const LandingScreen = ({ onEnter }) => {
         <div className="absolute inset-0 hex-pattern opacity-30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,255,255,0.08)_0%,transparent_60%)]" />
         
-        {/* Professional grid overlay */}
-        <div className="absolute inset-0 grid-cyber opacity-40" />
+        {/* Animated grid overlay */}
+        <motion.div 
+          className="absolute inset-0 grid-cyber"
+          animate={{
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
         
-        {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-64 h-64 border-l-2 border-t-2 border-cyan-500/30" />
-        <div className="absolute top-0 right-0 w-64 h-64 border-r-2 border-t-2 border-cyan-500/30" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 border-l-2 border-b-2 border-cyan-500/30" />
-        <div className="absolute bottom-0 right-0 w-64 h-64 border-r-2 border-b-2 border-cyan-500/30" />
+        {/* Animated Corner accents */}
+        <motion.div 
+          className="absolute top-0 left-0 w-64 h-64 border-l-2 border-t-2 border-cyan-500/30"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="absolute top-0 right-0 w-64 h-64 border-r-2 border-t-2 border-cyan-500/30"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-0 left-0 w-64 h-64 border-l-2 border-b-2 border-cyan-500/30"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        <motion.div 
+          className="absolute bottom-0 right-0 w-64 h-64 border-r-2 border-b-2 border-cyan-500/30"
+          animate={{
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.02, 1]
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 3
+          }}
+        />
 
-        {/* Minimal floating particles */}
+        {/* Enhanced floating particles */}
         <div className="absolute inset-0">
-          {[...Array(40)].map((_, i) => (
+          {[...Array(60)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-cyan-400 rounded-full"
+              className="absolute rounded-full"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
+                width: `${2 + Math.random() * 3}px`,
+                height: `${2 + Math.random() * 3}px`,
+                background: i % 3 === 0 ? '#00ffff' : i % 3 === 1 ? '#00ff88' : '#0088ff'
               }}
               animate={{
-                y: [0, -30, 0],
+                y: [0, -40 - Math.random() * 40, 0],
+                x: [0, (Math.random() - 0.5) * 30, 0],
                 opacity: [0.2, 1, 0.2],
-                scale: [1, 1.5, 1],
+                scale: [1, 1.5 + Math.random() * 0.5, 1],
               }}
               transition={{
-                duration: 3 + Math.random() * 4,
+                duration: 4 + Math.random() * 6,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 4,
+                ease: "easeInOut"
               }}
             />
           ))}
@@ -50,15 +112,36 @@ export const LandingScreen = ({ onEnter }) => {
           style={{
             background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.03) 2px, rgba(0, 255, 255, 0.03) 4px)'
           }}
+          animate={{
+            opacity: [0.5, 1, 0.5]
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
         
         <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent h-40"
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/8 to-transparent h-40"
           animate={{
             y: ['-20%', '120%'],
           }}
           transition={{
-            duration: 10,
+            duration: 8,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+        />
+        
+        {/* Additional moving scan line */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent h-32"
+          animate={{
+            y: ['120%', '-20%'],
+          }}
+          transition={{
+            duration: 12,
             repeat: Infinity,
             ease: 'linear',
           }}
@@ -78,23 +161,32 @@ export const LandingScreen = ({ onEnter }) => {
             <motion.div
               className="absolute inset-0 bg-cyan-500/20 blur-3xl"
               animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.6, 0.2],
               }}
               transition={{
-                duration: 3,
+                duration: 4,
                 repeat: Infinity,
+                ease: "easeInOut"
               }}
             />
             <div className="relative flex items-center justify-center gap-6">
               <motion.div
                 animate={{
                   rotate: [0, 360],
+                  scale: [1, 1.1, 1]
                 }}
                 transition={{
-                  duration: 20,
-                  repeat: Infinity,
-                  ease: 'linear',
+                  rotate: {
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  },
+                  scale: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: 'easeInOut'
+                  }
                 }}
               >
                 <Shield className="w-20 h-20 text-cyber-blue text-glow" />
@@ -102,12 +194,13 @@ export const LandingScreen = ({ onEnter }) => {
               
               <motion.div
                 animate={{
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.15, 1],
                   rotate: [0, 5, -5, 0],
                 }}
                 transition={{
                   duration: 4,
                   repeat: Infinity,
+                  ease: "easeInOut"
                 }}
               >
                 <Brain className="w-24 h-24 text-neural-glow text-glow pulse-glow" />
@@ -115,11 +208,13 @@ export const LandingScreen = ({ onEnter }) => {
               
               <motion.div
                 animate={{
-                  y: [0, -10, 0],
+                  y: [0, -15, 0],
+                  rotate: [0, 10, -10, 0]
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
+                  ease: "easeInOut"
                 }}
               >
                 <Zap className="w-20 h-20 text-cyber-purple text-glow" />
@@ -191,55 +286,6 @@ export const LandingScreen = ({ onEnter }) => {
           </motion.div>
         </motion.div>
 
-        {/* Feature Cards */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full px-4"
-        >
-          {[
-            { 
-              icon: Brain, 
-              title: 'Neural Network', 
-              desc: 'Living 3D visualization',
-              color: 'from-cyan-500 to-blue-500'
-            },
-            { 
-              icon: Target, 
-              title: 'Real Threats', 
-              desc: 'Dynamic attack simulation',
-              color: 'from-purple-500 to-pink-500'
-            },
-            { 
-              icon: Eye, 
-              title: 'AI Observer', 
-              desc: 'Adaptive learning system',
-              color: 'from-green-500 to-emerald-500'
-            }
-          ].map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.7 + i * 0.2 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="relative group"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br opacity-10 group-hover:opacity-20 transition-opacity blur-xl" />
-              <div className="relative cyber-border cyber-panel p-6 rounded">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 cyber-border rounded flex items-center justify-center">
-                    <feature.icon className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/50 to-transparent" />
-                </div>
-                <h3 className="font-orbitron text-white text-base mb-2 tracking-wider">{feature.title}</h3>
-                <p className="text-cyan-300/80 font-rajdhani text-sm leading-relaxed">{feature.desc}</p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </div>
   );
